@@ -49,7 +49,7 @@ export default function LEDRingPreview({
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
-      style={{ background: "#1a1a1a", borderRadius: 16, boxShadow: "0 2px 20px rgba(0,0,0,0.15)" }}
+      style={{ background: "#2a2318", borderRadius: 16, boxShadow: "0 2px 20px rgba(0,0,0,0.15)" }}
     >
       <defs>
         {ringColors.map((c, i) => glowFilter(c, `rg${i}`))}
@@ -57,8 +57,8 @@ export default function LEDRingPreview({
       </defs>
 
       {/* Clock face guides */}
-      <circle cx={cx} cy={cy} r={outerR} fill="none" stroke="#222" strokeWidth={1} />
-      <circle cx={cx} cy={cy} r={innerR} fill="none" stroke="#1a1a1a" strokeWidth={1} />
+      <circle cx={cx} cy={cy} r={outerR} fill="none" stroke="#3d3526" strokeWidth={1} />
+      <circle cx={cx} cy={cy} r={innerR} fill="none" stroke="#332d20" strokeWidth={1} />
 
       {/* 12/3/6/9 markers */}
       {[0, 90, 180, 270].map((deg) => {
@@ -73,7 +73,7 @@ export default function LEDRingPreview({
             y={y}
             textAnchor="middle"
             dominantBaseline="central"
-            fill="#444"
+            fill="#6b5d47"
             fontSize={11}
             fontFamily="monospace"
           >
@@ -104,8 +104,8 @@ export default function LEDRingPreview({
               cx={x}
               cy={y}
               r={ledRadius}
-              fill={bright > 2 ? colorToHex(color) : "#1a1a1a"}
-              stroke="#333"
+              fill={bright > 2 ? colorToHex(color) : "#362f22"}
+              stroke="#4a4030"
               strokeWidth={0.5}
             />
           </g>
@@ -137,8 +137,8 @@ export default function LEDRingPreview({
               cx={x}
               cy={y}
               r={innerLedRadius}
-              fill={bright > 2 ? colorToHex(color) : "#1a1a1a"}
-              stroke="#333"
+              fill={bright > 2 ? colorToHex(color) : "#362f22"}
+              stroke="#4a4030"
               strokeWidth={0.5}
             />
           </g>
@@ -146,10 +146,10 @@ export default function LEDRingPreview({
       })}
 
       {/* Center dot */}
-      <circle cx={cx} cy={cy} r={3} fill="#333" />
+      <circle cx={cx} cy={cy} r={3} fill="#4a4030" />
 
       {/* Labels */}
-      <text x={cx} y={size - 8} textAnchor="middle" fill="#555" fontSize={10} fontFamily="monospace">
+      <text x={cx} y={size - 8} textAnchor="middle" fill="#6b5d47" fontSize={10} fontFamily="monospace">
         outer: {clockLedCount} LEDs (clock) &middot; inner: {illumLedCount - illumSkipFirst} LEDs (illum)
       </text>
     </svg>

@@ -13,3 +13,4 @@ frontend/dist/
 venv/
 .claude/
 .DS_Store
+wifi_credentials.txt

@@ -305,8 +305,9 @@ async def preview_ws(websocket: WebSocket):
                 await asyncio.sleep(0.05)
                 continue
 
-            now = time.time()
-            frame = compute_frame(program.model_dump(), hardware, now)
+            lt = time.localtime()
+            now_local = lt.tm_hour * 3600 + lt.tm_min * 60 + lt.tm_sec + time.time() % 1
+            frame = compute_frame(program.model_dump(), hardware, now_local)
             await websocket.send_json(frame)
 
     except WebSocketDisconnect:

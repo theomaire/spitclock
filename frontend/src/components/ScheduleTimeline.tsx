@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Program, Schedule, ScheduleRule } from "../types";
+import type { ChimeRule, ChimeTrigger, Program, Schedule, ScheduleRule } from "../types";
 
 interface Props {
   schedule: Schedule;
@@ -26,6 +26,12 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
   const [addProgram, setAddProgram] = useState("");
   const [addDays, setAddDays] = useState<string[]>([]);
 
+  const [chimeProgram, setChimeProgram] = useState("");
+  const [chimeTrigger, setChimeTrigger] = useState<ChimeTrigger>("hour");
+  const [chimeDuration, setChimeDuration] = useState(10);
+  const [chimeStartHour, setChimeStartHour] = useState(8);
+  const [chimeEndHour, setChimeEndHour] = useState(22);
+
   const programIds = Object.keys(programs);
 
   const handleAddRule = () => {
@@ -46,6 +52,23 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
 
   const handleSetDefault = (programId: string) => {
     onUpdate({ ...schedule, default_program: programId });
+  };
+
+  const handleAddChime = () => {
+    if (!chimeProgram) return;
+    const chime: ChimeRule = {
+      program: chimeProgram,
+      trigger: chimeTrigger,
+      duration: chimeDuration,
+      start_hour: chimeStartHour,
+      end_hour: chimeEndHour,
+    };
+    onUpdate({ ...schedule, chimes: [...(schedule.chimes || []), chime] });
+  };
+
+  const handleDeleteChime = (idx: number) => {
+    const chimes = (schedule.chimes || []).filter((_, i) => i !== idx);
+    onUpdate({ ...schedule, chimes });
   };
 
   return (
@@ -296,6 +319,133 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
           }}
         >
           Add Rule
+        </button>
+      </div>
+
+      {/* Chimes — church bell system */}
+      <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #e5e2dc", padding: 12 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a2a", marginBottom: 8 }}>
+          Chimes
+          <span style={{ fontWeight: 400, color: "#999", fontSize: 12, marginLeft: 8 }}>
+            Triggers a program at the hour, half, or quarter — like a church bell
+          </span>
+        </div>
+
+        {(!schedule.chimes || schedule.chimes.length === 0) && (
+          <div style={{ color: "#999", fontSize: 13, fontStyle: "italic", marginBottom: 8 }}>No chimes configured</div>
+        )}
+
+        {(schedule.chimes || []).map((chime, i) => (
+          <div
+            key={i}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "8px 0",
+              borderBottom: "1px solid #e5e2dc",
+              fontSize: 13,
+            }}
+          >
+            <span style={{ color: "#2a2a2a", fontFamily: "monospace" }}>
+              every {chime.trigger === "hour" ? ":00" : chime.trigger === "half" ? ":00 :30" : ":00 :15 :30 :45"}
+            </span>
+            <span style={{ color: "#2563eb" }}>{programs[chime.program]?.name ?? chime.program}</span>
+            <span style={{ color: "#999", fontSize: 11 }}>{chime.duration}s</span>
+            <span style={{ color: "#999", fontSize: 11 }}>
+              {chime.start_hour}:00–{chime.end_hour}:00
+            </span>
+            <button
+              onClick={() => handleDeleteChime(i)}
+              style={{ marginLeft: "auto", background: "none", border: "none", color: "#999", cursor: "pointer", fontSize: 16 }}
+            >
+              x
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Add chime */}
+      <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #e5e2dc", padding: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a2a" }}>Add Chime</div>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          <label style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 13, color: "#777" }}>
+            Trigger
+            <select
+              value={chimeTrigger}
+              onChange={(e) => setChimeTrigger(e.target.value as ChimeTrigger)}
+              style={{ padding: "4px 8px", background: "#fff", color: "#2a2a2a", border: "1px solid #d4cfc8", borderRadius: 4, fontSize: 13 }}
+            >
+              <option value="hour">Every hour (:00)</option>
+              <option value="half">Every half (:00, :30)</option>
+              <option value="quarter">Every quarter (:00, :15, :30, :45)</option>
+            </select>
+          </label>
+          <label style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 13, color: "#777" }}>
+            Duration
+            <input
+              type="number"
+              min={1}
+              max={300}
+              value={chimeDuration}
+              onChange={(e) => setChimeDuration(parseInt(e.target.value) || 10)}
+              style={{ width: 60, padding: "4px 8px", background: "#fff", color: "#2a2a2a", border: "1px solid #d4cfc8", borderRadius: 4, fontSize: 13 }}
+            />
+            <span style={{ fontSize: 12, color: "#999" }}>sec</span>
+          </label>
+        </div>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          <label style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 13, color: "#777" }}>
+            Active from
+            <input
+              type="number"
+              min={0}
+              max={23}
+              value={chimeStartHour}
+              onChange={(e) => setChimeStartHour(parseInt(e.target.value) || 0)}
+              style={{ width: 50, padding: "4px 8px", background: "#fff", color: "#2a2a2a", border: "1px solid #d4cfc8", borderRadius: 4, fontSize: 13 }}
+            />
+            :00
+          </label>
+          <span style={{ color: "#999" }}>to</span>
+          <label style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 13, color: "#777" }}>
+            <input
+              type="number"
+              min={0}
+              max={24}
+              value={chimeEndHour}
+              onChange={(e) => setChimeEndHour(parseInt(e.target.value) || 24)}
+              style={{ width: 50, padding: "4px 8px", background: "#fff", color: "#2a2a2a", border: "1px solid #d4cfc8", borderRadius: 4, fontSize: 13 }}
+            />
+            :00
+          </label>
+          <select
+            value={chimeProgram}
+            onChange={(e) => setChimeProgram(e.target.value)}
+            style={{ flex: 1, padding: "6px 8px", background: "#fff", color: "#2a2a2a", border: "1px solid #d4cfc8", borderRadius: 4, fontSize: 13 }}
+          >
+            <option value="">Select program...</option>
+            {programIds.map((id) => (
+              <option key={id} value={id}>
+                {programs[id].name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button
+          onClick={handleAddChime}
+          disabled={!chimeProgram}
+          style={{
+            padding: "8px",
+            background: chimeProgram ? "#16a34a" : "#ccc",
+            color: "#fff",
+            border: "none",
+            borderRadius: 4,
+            cursor: chimeProgram ? "pointer" : "not-allowed",
+            fontSize: 13,
+          }}
+        >
+          Add Chime
         </button>
       </div>
     </div>

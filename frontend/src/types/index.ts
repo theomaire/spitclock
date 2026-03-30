@@ -37,9 +37,20 @@ export interface ScheduleRule {
   days?: string[] | null;
 }
 
+export type ChimeTrigger = "hour" | "half" | "quarter";
+
+export interface ChimeRule {
+  program: string;
+  trigger: ChimeTrigger;
+  duration: number;
+  start_hour: number;
+  end_hour: number;
+}
+
 export interface Schedule {
   default_program: string;
   rules: ScheduleRule[];
+  chimes: ChimeRule[];
 }
 
 export interface ConnectionStatus {

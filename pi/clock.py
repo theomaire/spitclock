@@ -167,6 +167,56 @@ def get_active_program(config):
     return programs.get(default_id, list(programs.values())[0] if programs else DEFAULT_CONFIG["programs"]["clock_default"])
 
 
+def get_chime_program(config):
+    """Check if a chime should be active right now. Returns (program, end_time) or None."""
+    schedule = config.get("schedule", {})
+    programs = config.get("programs", {})
+    chimes = schedule.get("chimes", [])
+    if not chimes:
+        return None
+
+    now = time.localtime()
+    hour = now.tm_hour
+    minute = now.tm_min
+    second = now.tm_sec
+
+    for chime in chimes:
+        program_id = chime.get("program")
+        if program_id not in programs:
+            continue
+
+        trigger = chime.get("trigger", "hour")
+        duration = chime.get("duration", 10)
+        start_hour = chime.get("start_hour", 0)
+        end_hour = chime.get("end_hour", 24)
+
+        # Check if current hour is within the allowed range
+        if start_hour <= end_hour:
+            if hour < start_hour or hour >= end_hour:
+                continue
+        else:
+            if hour >= end_hour and hour < start_hour:
+                continue
+
+        # Determine trigger minutes
+        if trigger == "hour":
+            trigger_minutes = [0]
+        elif trigger == "half":
+            trigger_minutes = [0, 30]
+        elif trigger == "quarter":
+            trigger_minutes = [0, 15, 30, 45]
+        else:
+            continue
+
+        # Check if we're within `duration` seconds after a trigger
+        for trig_min in trigger_minutes:
+            elapsed = (minute - trig_min) * 60 + second
+            if elapsed >= 0 and elapsed < duration:
+                return programs[program_id]
+
+    return None
+
+
 # ── Renderers ────────────────────────────────────────────────────────────
 
 def render_clock(pixels, illum_strip, program, hw, now_seconds):
@@ -379,7 +429,11 @@ def run_clock(test_mode=False):
             if active_program is None:
                 active_program = get_active_program(config)
 
-            ptype = active_program.get("type", "clock")
+            # Chimes override the active program
+            chime_program = get_chime_program(config)
+            current = chime_program if chime_program else active_program
+
+            ptype = current.get("type", "clock")
 
             if test_mode:
                 elapsed = time.monotonic() - start
@@ -392,13 +446,13 @@ def run_clock(test_mode=False):
                 now_seconds = now.tm_hour * 3600 + now.tm_min * 60 + now.tm_sec + time.time() % 1
 
             if ptype == "clock":
-                render_clock(pixels, illum_strip, active_program, hw, now_seconds)
+                render_clock(pixels, illum_strip, current, hw, now_seconds)
             elif ptype == "solid":
-                render_solid(pixels, illum_strip, active_program, hw, now_seconds)
+                render_solid(pixels, illum_strip, current, hw, now_seconds)
             elif ptype == "effect":
-                render_effect(pixels, illum_strip, active_program, hw, now_seconds)
+                render_effect(pixels, illum_strip, current, hw, now_seconds)
             elif ptype == "custom":
-                render_custom(pixels, illum_strip, active_program, hw)
+                render_custom(pixels, illum_strip, current, hw)
 
             time.sleep(0.05)
 

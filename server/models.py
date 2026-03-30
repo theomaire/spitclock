@@ -105,9 +105,24 @@ class ScheduleRule(BaseModel):
     days: Optional[list[str]] = None  # e.g. ["monday", "friday"]
 
 
+class ChimeTrigger(str, Enum):
+    hour = "hour"          # every :00
+    half = "half"          # every :00 and :30
+    quarter = "quarter"    # every :00, :15, :30, :45
+
+
+class ChimeRule(BaseModel):
+    program: str
+    trigger: ChimeTrigger = ChimeTrigger.hour
+    duration: int = Field(10, ge=1, le=300)  # seconds
+    start_hour: int = Field(0, ge=0, le=23)   # only chime between these hours
+    end_hour: int = Field(24, ge=0, le=24)
+
+
 class Schedule(BaseModel):
     default_program: str = "clock_default"
     rules: list[ScheduleRule] = []
+    chimes: list[ChimeRule] = []
 
 
 # ---------------------------------------------------------------------------

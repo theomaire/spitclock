@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException
 
 from ..config_store import load_config, save_config
-from ..models import Schedule, ScheduleRule
+from ..models import ChimeRule, Schedule, ScheduleRule
 
 router = APIRouter(prefix="/api/schedule", tags=["schedule"])
 
@@ -26,6 +26,9 @@ def update_schedule(schedule: Schedule) -> Schedule:
     for rule in schedule.rules:
         if rule.program not in all_ids:
             raise HTTPException(400, f"Program '{rule.program}' in rule not found")
+    for chime in schedule.chimes:
+        if chime.program not in all_ids:
+            raise HTTPException(400, f"Program '{chime.program}' in chime not found")
     cfg.schedule = schedule
     save_config(cfg)
     return schedule

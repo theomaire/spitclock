@@ -20,7 +20,7 @@ type Tab = "programs" | "schedule";
 
 export default function App() {
   const [programs, setPrograms] = useState<Record<string, Program>>({});
-  const [schedule, setSchedule] = useState<Schedule>({ default_program: "clock_default", rules: [] });
+  const [schedule, setSchedule] = useState<Schedule>({ default_program: "clock_default", rules: [], chimes: [] });
   const [selectedProgramId, setSelectedProgramId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>("programs");
 

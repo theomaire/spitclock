@@ -134,7 +134,7 @@ export default function App() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700, letterSpacing: -0.5 }}>
-            SpitClock
+            SpitOclock
           </h1>
           <span style={{ color: "#999", fontSize: 12 }}>LED Clock Programmer</span>
         </div>

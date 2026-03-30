@@ -43,5 +43,5 @@ cd ..
 echo ""
 echo "=== Done! ==="
 echo ""
-echo "Run 'spitclock' to launch the LED programmer."
+echo "Run 'spitoclock' to launch the LED programmer."
 echo "It will open http://localhost:8421 in your browser."

@@ -24,7 +24,7 @@ async def lifespan(app: FastAPI):
 
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="SpitClock", version="0.1.0", lifespan=lifespan)
+    app = FastAPI(title="SpitOclock", version="0.1.0", lifespan=lifespan)
 
     app.add_middleware(
         CORSMiddleware,
@@ -72,7 +72,7 @@ def main():
     """CLI entry point — launch the server and open the browser."""
     import uvicorn
 
-    print("🕐 SpitClock — LED Clock Programmer")
+    print("🕐 SpitOclock — LED Clock Programmer")
     print("    http://localhost:8421")
     print("    Press Ctrl+C to stop.\n")
 

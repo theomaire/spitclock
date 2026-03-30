@@ -224,22 +224,28 @@
   },
   "schedule": {
     "default_program": "clock_default",
-    "rules": [
+    "rules": [],
+    "chimes": [
       {
-        "start": "16:48",
-        "end": "16:50",
         "program": "rainbow_party",
-        "days": [
-          "monday"
-        ]
+        "trigger": "hour",
+        "duration": 10,
+        "start_hour": 8,
+        "end_hour": 22
       },
       {
-        "start": "16:48",
-        "end": "16:50",
-        "program": "rainbow_party",
-        "days": [
-          "monday"
-        ]
+        "program": "spitgrid_bloodshed",
+        "trigger": "half",
+        "duration": 10,
+        "start_hour": 8,
+        "end_hour": 22
+      },
+      {
+        "program": "warm_glow",
+        "trigger": "quarter",
+        "duration": 10,
+        "start_hour": 8,
+        "end_hour": 22
       }
     ]
   },

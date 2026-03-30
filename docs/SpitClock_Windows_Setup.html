@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>SpitClock — Windows Setup Guide</title>
+  <title>SpitOclock — Windows Setup Guide</title>
   <style>
 
 code{white-space: pre-wrap;}
@@ -53,24 +53,24 @@ pre { background: #f5f5f5; color: #333; border: 1px solid #ddd; }
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">SpitClock — Windows Setup Guide</h1>
+<h1 class="title">SpitOclock — Windows Setup Guide</h1>
 </header>
-<h1 id="spitclock-windows-setup-guide">SpitClock — Windows Setup
+<h1 id="spitoclock-windows-setup-guide">SpitOclock — Windows Setup
 Guide</h1>
-<p>This guide walks you through installing SpitClock on a Windows
+<p>This guide walks you through installing SpitOclock on a Windows
 computer, step by step.</p>
 <hr />
 <h2 id="what-youll-need">What You’ll Need</h2>
 <ul>
 <li>A Windows 10 or 11 computer</li>
 <li>An internet connection</li>
-<li>The SpitClock Pi Zero (the little clock device) plugged in and
+<li>The SpitOclock Pi Zero (the little clock device) plugged in and
 connected to your WiFi</li>
 <li>About 10 minutes</li>
 </ul>
 <hr />
 <h2 id="step-1-install-python">Step 1: Install Python</h2>
-<p>Python is the programming language that runs the SpitClock app.</p>
+<p>Python is the programming language that runs the SpitOclock app.</p>
 <ol type="1">
 <li>Open your browser and go to:
 <strong>https://www.python.org/downloads/</strong></li>
@@ -112,7 +112,7 @@ screens (default options are fine)</li>
 <hr />
 <h2 id="step-3-install-git-if-you-dont-have-it">Step 3: Install Git (if
 you don’t have it)</h2>
-<p>Git is needed to download the SpitClock code.</p>
+<p>Git is needed to download the SpitOclock code.</p>
 <ol type="1">
 <li>Go to: <strong>https://git-scm.com/download/win</strong></li>
 <li>The download should start automatically</li>
@@ -127,25 +127,25 @@ you don’t have it)</h2>
 <li>You should see something like <code>git version 2.x.x</code></li>
 </ol>
 <hr />
-<h2 id="step-4-download-and-install-spitclock">Step 4: Download and
-Install SpitClock</h2>
-<p>Now let’s get SpitClock itself. Open a terminal and run these
+<h2 id="step-4-download-and-install-spitoclock">Step 4: Download and
+Install SpitOclock</h2>
+<p>Now let’s get SpitOclock itself. Open a terminal and run these
 commands one by one:</p>
 <pre><code>cd %USERPROFILE%\Documents</code></pre>
-<pre><code>git clone https://github.com/theomaire/spitclock.git</code></pre>
-<pre><code>cd spitclock</code></pre>
+<pre><code>git clone https://github.com/theomaire/spitoclock.git</code></pre>
+<pre><code>cd spitoclock</code></pre>
 <pre><code>scripts\install.bat</code></pre>
 <p>The installer will: - Install Python dependencies - Build the web
-interface - Set up the <code>spitclock</code> command</p>
+interface - Set up the <code>spitoclock</code> command</p>
 <p>Wait for it to finish — you should see <strong>“Installation
 complete!”</strong></p>
 <hr />
-<h2 id="step-5-run-spitclock">Step 5: Run SpitClock</h2>
+<h2 id="step-5-run-spitoclock">Step 5: Run SpitOclock</h2>
 <p>In any terminal, type:</p>
-<pre><code>spitclock</code></pre>
-<p>This will: - Start the SpitClock server - Open
+<pre><code>spitoclock</code></pre>
+<p>This will: - Start the SpitOclock server - Open
 <strong>http://localhost:8421</strong> in your browser automatically</p>
-<p>You should see the SpitClock interface with: - A visual preview of
+<p>You should see the SpitOclock interface with: - A visual preview of
 the LED clock (two rings of colored dots) - Controls to change colors,
 effects, and schedules - A “Push to Clock” button to send changes to the
 physical clock</p>
@@ -160,7 +160,7 @@ computer - Wait 30 seconds after plugging in the Pi (it needs time to
 boot)</p>
 <p>Click <strong>“Refresh”</strong> to try connecting again.</p>
 <hr />
-<h2 id="using-spitclock">Using SpitClock</h2>
+<h2 id="using-spitoclock">Using SpitOclock</h2>
 <h3 id="changing-colors">Changing Colors</h3>
 <ol type="1">
 <li>Click on a program in the <strong>Programs</strong> list (e.g.,
@@ -197,11 +197,12 @@ scheduled times</li>
 <li>You forgot to check “Add Python to PATH” during installation</li>
 <li>Uninstall Python, reinstall it, and make sure to check that box</li>
 </ul>
-<h3 id="spitclock-is-not-recognized">“spitclock is not recognized”</h3>
+<h3 id="spitoclock-is-not-recognized">“spitoclock is not
+recognized”</h3>
 <ul>
 <li>Close your terminal and open a new one</li>
 <li>If it still doesn’t work, try: <code>python -m server.app</code>
-from the spitclock folder</li>
+from the spitoclock folder</li>
 </ul>
 <h3 id="cannot-connect-to-pi">“Cannot connect to Pi”</h3>
 <ul>
@@ -216,9 +217,9 @@ from the spitclock folder</li>
 administrator”)</li>
 </ul>
 <hr />
-<h2 id="updating-spitclock">Updating SpitClock</h2>
+<h2 id="updating-spitoclock">Updating SpitOclock</h2>
 <p>When there’s a new version, open a terminal and run:</p>
-<pre><code>cd %USERPROFILE%\Documents\spitclock
+<pre><code>cd %USERPROFILE%\Documents\spitoclock
 git pull
 scripts\install.bat</code></pre>
 <hr />
@@ -236,12 +237,12 @@ scripts\install.bat</code></pre>
 </thead>
 <tbody>
 <tr>
-<td>Start SpitClock</td>
-<td><code>spitclock</code></td>
+<td>Start SpitOclock</td>
+<td><code>spitoclock</code></td>
 </tr>
 <tr>
-<td>Update SpitClock</td>
-<td><code>cd Documents\spitclock</code> then <code>git pull</code> then
+<td>Update SpitOclock</td>
+<td><code>cd Documents\spitoclock</code> then <code>git pull</code> then
 <code>scripts\install.bat</code></td>
 </tr>
 <tr>
@@ -249,7 +250,7 @@ scripts\install.bat</code></pre>
 <td>Go to http://localhost:8421 in your browser</td>
 </tr>
 <tr>
-<td>Stop SpitClock</td>
+<td>Stop SpitOclock</td>
 <td>Press <code>Ctrl + C</code> in the terminal</td>
 </tr>
 </tbody>

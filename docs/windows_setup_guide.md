@@ -1,6 +1,6 @@
-# SpitClock — Windows Setup Guide
+# SpitOclock — Windows Setup Guide
 
-This guide walks you through installing SpitClock on a Windows computer, step by step.
+This guide walks you through installing SpitOclock on a Windows computer, step by step.
 
 ---
 
@@ -8,14 +8,14 @@ This guide walks you through installing SpitClock on a Windows computer, step by
 
 - A Windows 10 or 11 computer
 - An internet connection
-- The SpitClock Pi Zero (the little clock device) plugged in and connected to your WiFi
+- The SpitOclock Pi Zero (the little clock device) plugged in and connected to your WiFi
 - About 10 minutes
 
 ---
 
 ## Step 1: Install Python
 
-Python is the programming language that runs the SpitClock app.
+Python is the programming language that runs the SpitOclock app.
 
 1. Open your browser and go to: **https://www.python.org/downloads/**
 2. Click the big yellow **"Download Python 3.x.x"** button
@@ -51,7 +51,7 @@ Node.js is needed to build the visual interface.
 
 ## Step 3: Install Git (if you don't have it)
 
-Git is needed to download the SpitClock code.
+Git is needed to download the SpitOclock code.
 
 1. Go to: **https://git-scm.com/download/win**
 2. The download should start automatically
@@ -66,20 +66,20 @@ Git is needed to download the SpitClock code.
 
 ---
 
-## Step 4: Download and Install SpitClock
+## Step 4: Download and Install SpitOclock
 
-Now let's get SpitClock itself. Open a terminal and run these commands one by one:
+Now let's get SpitOclock itself. Open a terminal and run these commands one by one:
 
 ```
 cd %USERPROFILE%\Documents
 ```
 
 ```
-git clone https://github.com/theomaire/spitclock.git
+git clone https://github.com/theomaire/spitoclock.git
 ```
 
 ```
-cd spitclock
+cd spitoclock
 ```
 
 ```
@@ -89,25 +89,25 @@ scripts\install.bat
 The installer will:
 - Install Python dependencies
 - Build the web interface
-- Set up the `spitclock` command
+- Set up the `spitoclock` command
 
 Wait for it to finish — you should see **"Installation complete!"**
 
 ---
 
-## Step 5: Run SpitClock
+## Step 5: Run SpitOclock
 
 In any terminal, type:
 
 ```
-spitclock
+spitoclock
 ```
 
 This will:
-- Start the SpitClock server
+- Start the SpitOclock server
 - Open **http://localhost:8421** in your browser automatically
 
-You should see the SpitClock interface with:
+You should see the SpitOclock interface with:
 - A visual preview of the LED clock (two rings of colored dots)
 - Controls to change colors, effects, and schedules
 - A "Push to Clock" button to send changes to the physical clock
@@ -129,7 +129,7 @@ Click **"Refresh"** to try connecting again.
 
 ---
 
-## Using SpitClock
+## Using SpitOclock
 
 ### Changing Colors
 1. Click on a program in the **Programs** list (e.g., "Default Clock")
@@ -159,9 +159,9 @@ Click **"Refresh"** to try connecting again.
 - You forgot to check "Add Python to PATH" during installation
 - Uninstall Python, reinstall it, and make sure to check that box
 
-### "spitclock is not recognized"
+### "spitoclock is not recognized"
 - Close your terminal and open a new one
-- If it still doesn't work, try: `python -m server.app` from the spitclock folder
+- If it still doesn't work, try: `python -m server.app` from the spitoclock folder
 
 ### "Cannot connect to Pi"
 - Make sure the Pi is plugged in and has had 30+ seconds to boot
@@ -174,12 +174,12 @@ Click **"Refresh"** to try connecting again.
 
 ---
 
-## Updating SpitClock
+## Updating SpitOclock
 
 When there's a new version, open a terminal and run:
 
 ```
-cd %USERPROFILE%\Documents\spitclock
+cd %USERPROFILE%\Documents\spitoclock
 git pull
 scripts\install.bat
 ```
@@ -190,7 +190,7 @@ scripts\install.bat
 
 | Action | Command |
 |---|---|
-| Start SpitClock | `spitclock` |
-| Update SpitClock | `cd Documents\spitclock` then `git pull` then `scripts\install.bat` |
+| Start SpitOclock | `spitoclock` |
+| Update SpitOclock | `cd Documents\spitoclock` then `git pull` then `scripts\install.bat` |
 | Open the interface | Go to http://localhost:8421 in your browser |
-| Stop SpitClock | Press `Ctrl + C` in the terminal |
+| Stop SpitOclock | Press `Ctrl + C` in the terminal |

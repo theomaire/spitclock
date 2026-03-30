@@ -1,6 +1,6 @@
 @echo off
 echo ============================================
-echo   SpitClock Installer for Windows
+echo   SpitOclock Installer for Windows
 echo ============================================
 echo.
 
@@ -70,9 +70,9 @@ echo.
 echo ============================================
 echo   Installation complete!
 echo.
-echo   To start SpitClock, open a terminal and run:
+echo   To start SpitOclock, open a terminal and run:
 echo.
-echo       spitclock
+echo       spitoclock
 echo.
 echo   It will open http://localhost:8421 in your browser.
 echo ============================================

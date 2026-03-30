@@ -15,8 +15,8 @@ dependencies = [
 ]
 
 [project.scripts]
-spitclock = "server.app:main"
-spitclock-wifi = "scripts.add_wifi:main"
+spitoclock = "server.app:main"
+spitoclock-wifi = "scripts.add_wifi:main"
 
 [tool.setuptools.packages.find]
 include = ["server*", "scripts*"]

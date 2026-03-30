@@ -110,30 +110,21 @@ screens (default options are fine)</li>
 <li>You should see something like <code>v20.x.x</code></li>
 </ol>
 <hr />
-<h2 id="step-3-install-git-if-you-dont-have-it">Step 3: Install Git (if
-you don’t have it)</h2>
-<p>Git is needed to download the SpitOclock code.</p>
+<h2 id="step-3-copy-the-spitoclock-folder">Step 3: Copy the SpitOclock
+Folder</h2>
+<p>You should have received a <strong>spitclock</strong> folder (from a
+ZIP file or USB stick).</p>
 <ol type="1">
-<li>Go to: <strong>https://git-scm.com/download/win</strong></li>
-<li>The download should start automatically</li>
-<li>Run the installer — click <strong>Next</strong> through all screens
-(defaults are fine)</li>
-<li>Click <strong>Finish</strong></li>
+<li>Copy the <strong>spitclock</strong> folder to your
+<strong>Documents</strong> folder
+<ul>
+<li>So you have: <code>C:\Users\YourName\Documents\spitclock</code></li>
+</ul></li>
+<li>Open a terminal (press <code>Windows + R</code>, type
+<code>cmd</code>, Enter)</li>
+<li>Run these commands:</li>
 </ol>
-<h3 id="verify-it-works-2">Verify it works</h3>
-<ol type="1">
-<li>Open a <strong>new</strong> terminal</li>
-<li>Type: <code>git --version</code></li>
-<li>You should see something like <code>git version 2.x.x</code></li>
-</ol>
-<hr />
-<h2 id="step-4-download-and-install-spitoclock">Step 4: Download and
-Install SpitOclock</h2>
-<p>Now let’s get SpitOclock itself. Open a terminal and run these
-commands one by one:</p>
-<pre><code>cd %USERPROFILE%\Documents</code></pre>
-<pre><code>git clone https://github.com/theomaire/spitoclock.git</code></pre>
-<pre><code>cd spitoclock</code></pre>
+<pre><code>cd %USERPROFILE%\Documents\spitclock</code></pre>
 <pre><code>scripts\install.bat</code></pre>
 <p>The installer will: - Install Python dependencies - Build the web
 interface - Set up the <code>spitoclock</code> command</p>
@@ -218,7 +209,13 @@ administrator”)</li>
 </ul>
 <hr />
 <h2 id="updating-spitoclock">Updating SpitOclock</h2>
-<p>When there’s a new version, open a terminal and run:</p>
+<p>When there’s a new version, you’ll receive a new ZIP. Replace the
+spitclock folder and re-run the installer:</p>
+<ol type="1">
+<li>Delete the old <code>Documents\spitclock</code> folder</li>
+<li>Copy the new one in its place</li>
+<li>Open a terminal and run:</li>
+</ol>
 <pre><code>cd %USERPROFILE%\Documents\spitoclock
 git pull
 scripts\install.bat</code></pre>
@@ -242,7 +239,7 @@ scripts\install.bat</code></pre>
 </tr>
 <tr>
 <td>Update SpitOclock</td>
-<td><code>cd Documents\spitoclock</code> then <code>git pull</code> then
+<td>Replace folder, then <code>cd Documents\spitclock</code> then
 <code>scripts\install.bat</code></td>
 </tr>
 <tr>

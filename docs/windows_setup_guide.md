@@ -49,37 +49,17 @@ Node.js is needed to build the visual interface.
 
 ---
 
-## Step 3: Install Git (if you don't have it)
+## Step 3: Copy the SpitOclock Folder
 
-Git is needed to download the SpitOclock code.
+You should have received a **spitclock** folder (from a ZIP file or USB stick).
 
-1. Go to: **https://git-scm.com/download/win**
-2. The download should start automatically
-3. Run the installer — click **Next** through all screens (defaults are fine)
-4. Click **Finish**
-
-### Verify it works
-
-1. Open a **new** terminal
-2. Type: `git --version`
-3. You should see something like `git version 2.x.x`
-
----
-
-## Step 4: Download and Install SpitOclock
-
-Now let's get SpitOclock itself. Open a terminal and run these commands one by one:
+1. Copy the **spitclock** folder to your **Documents** folder
+   - So you have: `C:\Users\YourName\Documents\spitclock`
+2. Open a terminal (press `Windows + R`, type `cmd`, Enter)
+3. Run these commands:
 
 ```
-cd %USERPROFILE%\Documents
-```
-
-```
-git clone https://github.com/theomaire/spitoclock.git
-```
-
-```
-cd spitoclock
+cd %USERPROFILE%\Documents\spitclock
 ```
 
 ```
@@ -176,7 +156,11 @@ Click **"Refresh"** to try connecting again.
 
 ## Updating SpitOclock
 
-When there's a new version, open a terminal and run:
+When there's a new version, you'll receive a new ZIP. Replace the spitclock folder and re-run the installer:
+
+1. Delete the old `Documents\spitclock` folder
+2. Copy the new one in its place
+3. Open a terminal and run:
 
 ```
 cd %USERPROFILE%\Documents\spitoclock
@@ -191,6 +175,6 @@ scripts\install.bat
 | Action | Command |
 |---|---|
 | Start SpitOclock | `spitoclock` |
-| Update SpitOclock | `cd Documents\spitoclock` then `git pull` then `scripts\install.bat` |
+| Update SpitOclock | Replace folder, then `cd Documents\spitclock` then `scripts\install.bat` |
 | Open the interface | Go to http://localhost:8421 in your browser |
 | Stop SpitOclock | Press `Ctrl + C` in the terminal |

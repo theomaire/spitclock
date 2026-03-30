@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spitclock"
+version = "0.1.0"
+description = "LED clock programmer — visual editor for SpitClock NeoPixel rings"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "paramiko>=3.4",
+    "pydantic>=2.6",
+]
+
+[project.scripts]
+spitclock = "server.app:main"
+
+[tool.setuptools.packages.find]
+include = ["server*"]

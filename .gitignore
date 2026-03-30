@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.eggs/
+node_modules/
+frontend/dist/
+.env
+*.pem
+*.key
+.venv/
+venv/
+.claude/

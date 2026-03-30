@@ -132,10 +132,10 @@
           0
         ],
         "mode": "rainbow_cycle",
-        "speed": 0.02
+        "speed": 0.19
       },
       "effect": "rainbow_cycle",
-      "effect_speed": 0.02,
+      "effect_speed": 0.185,
       "custom_ring_colors": null,
       "custom_illum_colors": null
     },
@@ -179,11 +179,61 @@
       "effect_speed": 0.05,
       "custom_ring_colors": null,
       "custom_illum_colors": null
+    },
+    "spitgrid_bloodshed": {
+      "type": "effect",
+      "name": "SpitGrid Bloodshed",
+      "clock_ring": {
+        "brightness": 0.8,
+        "hour_color": [
+          255,
+          147,
+          0
+        ],
+        "minute_color": [
+          0,
+          150,
+          0
+        ],
+        "second_color": [
+          0,
+          50,
+          150
+        ],
+        "bg_color": [
+          255,
+          38,
+          0
+        ]
+      },
+      "illum_strip": {
+        "brightness": 207,
+        "color": [
+          255,
+          38,
+          0
+        ],
+        "mode": "rainbow_cycle",
+        "speed": 0.27
+      },
+      "effect": "sparkle",
+      "effect_speed": 0.205,
+      "custom_ring_colors": null,
+      "custom_illum_colors": null
     }
   },
   "schedule": {
     "default_program": "clock_default",
-    "rules": []
+    "rules": [
+      {
+        "start": "16:00",
+        "end": "16:05",
+        "program": "rainbow_party",
+        "days": [
+          "monday"
+        ]
+      }
+    ]
   },
   "connection": {
     "tailscale_ip": "100.92.33.66",

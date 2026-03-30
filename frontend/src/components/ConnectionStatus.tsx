@@ -14,9 +14,10 @@ export default function ConnectionStatus({ status, loading, onRefresh }: Props) 
         alignItems: "center",
         gap: 10,
         padding: "8px 16px",
-        background: "#1a1a1a",
+        background: "#f0ede8",
         borderRadius: 8,
         fontSize: 13,
+        border: "1px solid #e0dbd4",
       }}
     >
       <div
@@ -24,13 +25,13 @@ export default function ConnectionStatus({ status, loading, onRefresh }: Props) 
           width: 10,
           height: 10,
           borderRadius: "50%",
-          background: status.connected ? "#4ade80" : "#ef4444",
+          background: status.connected ? "#16a34a" : "#dc2626",
           boxShadow: status.connected
-            ? "0 0 8px #4ade80"
-            : "0 0 8px #ef4444",
+            ? "0 0 8px rgba(22,163,74,0.5)"
+            : "0 0 8px rgba(220,38,38,0.4)",
         }}
       />
-      <span style={{ color: "#ccc" }}>
+      <span style={{ color: "#555" }}>
         {loading
           ? "Connecting..."
           : status.connected
@@ -38,7 +39,7 @@ export default function ConnectionStatus({ status, loading, onRefresh }: Props) 
           : "Pi disconnected"}
       </span>
       {status.connected && status.host && (
-        <span style={{ color: "#666", fontSize: 11 }}>{status.host}</span>
+        <span style={{ color: "#999", fontSize: 11 }}>{status.host}</span>
       )}
       <button
         onClick={onRefresh}
@@ -46,9 +47,9 @@ export default function ConnectionStatus({ status, loading, onRefresh }: Props) 
         style={{
           marginLeft: "auto",
           padding: "4px 10px",
-          background: "#333",
-          color: "#ccc",
-          border: "1px solid #444",
+          background: "#fff",
+          color: "#555",
+          border: "1px solid #d4cfc8",
           borderRadius: 4,
           cursor: "pointer",
           fontSize: 12,

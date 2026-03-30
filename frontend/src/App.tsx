@@ -105,7 +105,8 @@ export default function App() {
     background: activeTab === tab ? "#2563eb" : "transparent",
     color: activeTab === tab ? "#fff" : "#888",
     border: "none",
-    borderBottom: activeTab === tab ? "2px solid #3b82f6" : "2px solid transparent",
+    borderBottom: activeTab === tab ? "2px solid #2563eb" : "2px solid transparent",
+    borderRadius: activeTab === tab ? "6px 6px 0 0" : 0,
     cursor: "pointer" as const,
     fontSize: 14,
     fontWeight: 500 as const,
@@ -115,8 +116,8 @@ export default function App() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#0a0a0a",
-        color: "#eee",
+        background: "#faf8f5",
+        color: "#2a2a2a",
         fontFamily: "'Inter', -apple-system, sans-serif",
       }}
     >
@@ -126,14 +127,16 @@ export default function App() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "12px 24px",
-          borderBottom: "1px solid #222",
+          background: "#fff",
+          borderBottom: "1px solid #e5e2dc",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700, letterSpacing: -0.5 }}>
             SpitClock
           </h1>
-          <span style={{ color: "#555", fontSize: 12 }}>LED Clock Programmer</span>
+          <span style={{ color: "#999", fontSize: 12 }}>LED Clock Programmer</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <ConnectionStatus status={piStatus} loading={piLoading} onRefresh={piRefresh} />
@@ -152,16 +155,16 @@ export default function App() {
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center" }}>
           <LEDRingPreview frame={frame} />
-          <div style={{ fontSize: 12, color: "#555", textAlign: "center" }}>
+          <div style={{ fontSize: 12, color: "#999", textAlign: "center" }}>
             {wsConnected ? "Live preview" : "Connecting to preview..."}
             {selectedProgramId && (
-              <> &middot; <span style={{ color: "#93c5fd" }}>{programs[selectedProgramId]?.name}</span></>
+              <> &middot; <span style={{ color: "#2563eb" }}>{programs[selectedProgramId]?.name}</span></>
             )}
           </div>
         </div>
 
         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 0 }}>
-          <div style={{ display: "flex", borderBottom: "1px solid #333", marginBottom: 16 }}>
+          <div style={{ display: "flex", borderBottom: "1px solid #e5e2dc", marginBottom: 16 }}>
             <button style={tabStyle("programs")} onClick={() => setActiveTab("programs")}>
               Programs
             </button>

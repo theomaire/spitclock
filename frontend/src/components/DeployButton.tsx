@@ -39,9 +39,9 @@ export default function DeployButton({ piConnected }: Props) {
         disabled={!piConnected || state === "deploying"}
         style={{
           padding: "12px 24px",
-          background: piConnected ? colors[state].bg : "#333",
+          background: piConnected ? colors[state].bg : "#ccc",
           color: "#fff",
-          border: `2px solid ${piConnected ? colors[state].border : "#555"}`,
+          border: `2px solid ${piConnected ? colors[state].border : "#bbb"}`,
           borderRadius: 8,
           cursor: piConnected && state !== "deploying" ? "pointer" : "not-allowed",
           fontSize: 15,
@@ -61,7 +61,7 @@ export default function DeployButton({ piConnected }: Props) {
         <span
           style={{
             fontSize: 12,
-            color: state === "error" ? "#ef4444" : "#4ade80",
+            color: state === "error" ? "#dc2626" : "#16a34a",
             textAlign: "center",
           }}
         >

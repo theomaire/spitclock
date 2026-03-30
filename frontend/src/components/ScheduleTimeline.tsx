@@ -51,16 +51,16 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       {/* Timeline visualization */}
-      <div style={{ background: "#1a1a1a", borderRadius: 8, padding: 16 }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: "#eee", marginBottom: 12 }}>24-Hour Timeline</div>
+      <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #e5e2dc", padding: 16 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a2a", marginBottom: 12 }}>24-Hour Timeline</div>
 
         {/* Default program bar */}
-        <div style={{ position: "relative", height: 32, background: "#222", borderRadius: 4, marginBottom: 4, overflow: "hidden" }}>
+        <div style={{ position: "relative", height: 32, background: "#e8e4de", borderRadius: 4, marginBottom: 4, overflow: "hidden" }}>
           <div
             style={{
               position: "absolute",
               inset: 0,
-              background: "#333",
+              background: "#ddd8d0",
               display: "flex",
               alignItems: "center",
               paddingLeft: 8,
@@ -169,12 +169,12 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
       </div>
 
       {/* Default program selector */}
-      <div style={{ background: "#1a1a1a", borderRadius: 8, padding: 12, display: "flex", alignItems: "center", gap: 8 }}>
-        <span style={{ color: "#aaa", fontSize: 13, minWidth: 120 }}>Default program</span>
+      <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #e5e2dc", padding: 12, display: "flex", alignItems: "center", gap: 8 }}>
+        <span style={{ color: "#777", fontSize: 13, minWidth: 120 }}>Default program</span>
         <select
           value={schedule.default_program}
           onChange={(e) => handleSetDefault(e.target.value)}
-          style={{ flex: 1, padding: "6px 8px", background: "#222", color: "#ccc", border: "1px solid #444", borderRadius: 4, fontSize: 13 }}
+          style={{ flex: 1, padding: "6px 8px", background: "#fff", color: "#2a2a2a", border: "1px solid #d4cfc8", borderRadius: 4, fontSize: 13 }}
         >
           {programIds.map((id) => (
             <option key={id} value={id}>
@@ -185,8 +185,8 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
       </div>
 
       {/* Rules list */}
-      <div style={{ background: "#1a1a1a", borderRadius: 8, padding: 12 }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: "#eee", marginBottom: 8 }}>Schedule Rules</div>
+      <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #e5e2dc", padding: 12 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a2a", marginBottom: 8 }}>Schedule Rules</div>
         {schedule.rules.length === 0 && (
           <div style={{ color: "#666", fontSize: 13, fontStyle: "italic" }}>No rules — default program runs 24/7</div>
         )}
@@ -198,7 +198,7 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
               alignItems: "center",
               gap: 8,
               padding: "8px 0",
-              borderBottom: "1px solid #222",
+              borderBottom: "1px solid #e5e2dc",
               fontSize: 13,
             }}
           >
@@ -211,10 +211,10 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
                 flexShrink: 0,
               }}
             />
-            <span style={{ color: "#ccc", fontFamily: "monospace" }}>
+            <span style={{ color: "#2a2a2a", fontFamily: "monospace" }}>
               {rule.start}–{rule.end}
             </span>
-            <span style={{ color: "#93c5fd" }}>{programs[rule.program]?.name ?? rule.program}</span>
+            <span style={{ color: "#2563eb" }}>{programs[rule.program]?.name ?? rule.program}</span>
             {rule.days && (
               <span style={{ color: "#666", fontSize: 11 }}>
                 {rule.days.map((d) => d.slice(0, 3)).join(", ")}
@@ -238,26 +238,26 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
       </div>
 
       {/* Add rule */}
-      <div style={{ background: "#1a1a1a", borderRadius: 8, padding: 12, display: "flex", flexDirection: "column", gap: 8 }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: "#eee" }}>Add Rule</div>
+      <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #e5e2dc", padding: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a2a" }}>Add Rule</div>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <input
             type="time"
             value={addStart}
             onChange={(e) => setAddStart(e.target.value)}
-            style={{ padding: "4px 8px", background: "#222", color: "#ccc", border: "1px solid #444", borderRadius: 4 }}
+            style={{ padding: "4px 8px", background: "#fff", color: "#2a2a2a", border: "1px solid #d4cfc8", borderRadius: 4 }}
           />
           <span style={{ color: "#666" }}>to</span>
           <input
             type="time"
             value={addEnd}
             onChange={(e) => setAddEnd(e.target.value)}
-            style={{ padding: "4px 8px", background: "#222", color: "#ccc", border: "1px solid #444", borderRadius: 4 }}
+            style={{ padding: "4px 8px", background: "#fff", color: "#2a2a2a", border: "1px solid #d4cfc8", borderRadius: 4 }}
           />
           <select
             value={addProgram}
             onChange={(e) => setAddProgram(e.target.value)}
-            style={{ flex: 1, padding: "6px 8px", background: "#222", color: "#ccc", border: "1px solid #444", borderRadius: 4, fontSize: 13 }}
+            style={{ flex: 1, padding: "6px 8px", background: "#fff", color: "#2a2a2a", border: "1px solid #d4cfc8", borderRadius: 4, fontSize: 13 }}
           >
             <option value="">Select program...</option>
             {programIds.map((id) => (
@@ -269,7 +269,7 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
         </div>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           {DAYS.map((day) => (
-            <label key={day} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: "#aaa" }}>
+            <label key={day} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: "#666" }}>
               <input
                 type="checkbox"
                 checked={addDays.includes(day)}
@@ -287,7 +287,7 @@ export default function ScheduleTimeline({ schedule, programs, onUpdate }: Props
           disabled={!addProgram}
           style={{
             padding: "8px",
-            background: addProgram ? "#16a34a" : "#333",
+            background: addProgram ? "#16a34a" : "#ccc",
             color: "#fff",
             border: "none",
             borderRadius: 4,

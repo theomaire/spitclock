@@ -33,13 +33,13 @@ export default function LEDRingPreview({
   illumLedCount = 16,
   illumSkipFirst = 1,
 }: Props) {
-  const size = 420;
+  const size = 540;
   const cx = size / 2;
   const cy = size / 2;
-  const outerR = 170;
-  const innerR = 105;
-  const ledRadius = 8;
-  const innerLedRadius = 6;
+  const outerR = 220;
+  const innerR = 136;
+  const ledRadius = 10;
+  const innerLedRadius = 8;
 
   const ringColors: Color[] = frame?.ring ?? Array(clockLedCount).fill([0, 0, 0]);
   const illumColors: Color[] = frame?.illum ?? Array(illumLedCount).fill([0, 0, 0]);
@@ -49,7 +49,7 @@ export default function LEDRingPreview({
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
-      style={{ background: "#111", borderRadius: 16 }}
+      style={{ background: "#1a1a1a", borderRadius: 16, boxShadow: "0 2px 20px rgba(0,0,0,0.15)" }}
     >
       <defs>
         {ringColors.map((c, i) => glowFilter(c, `rg${i}`))}

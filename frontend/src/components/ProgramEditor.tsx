@@ -61,7 +61,7 @@ function hexToColor(hex: string): Color {
 function ColorInput({ label, value, onChange }: { label: string; value: Color; onChange: (c: Color) => void }) {
   return (
     <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13 }}>
-      <span style={{ color: "#aaa", minWidth: 80 }}>{label}</span>
+      <span style={{ color: "#777", minWidth: 80 }}>{label}</span>
       <input
         type="color"
         value={colorToHex(value)}
@@ -92,7 +92,7 @@ function Slider({
 }) {
   return (
     <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13 }}>
-      <span style={{ color: "#aaa", minWidth: 80 }}>{label}</span>
+      <span style={{ color: "#777", minWidth: 80 }}>{label}</span>
       <input
         type="range"
         min={min}
@@ -122,16 +122,16 @@ function Select<T extends string>({
 }) {
   return (
     <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13 }}>
-      <span style={{ color: "#aaa", minWidth: 80 }}>{label}</span>
+      <span style={{ color: "#777", minWidth: 80 }}>{label}</span>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as T)}
         style={{
           flex: 1,
           padding: "4px 8px",
-          background: "#222",
-          color: "#ccc",
-          border: "1px solid #444",
+          background: "#fff",
+          color: "#2a2a2a",
+          border: "1px solid #d4cfc8",
           borderRadius: 4,
         }}
       >
@@ -176,8 +176,9 @@ export default function ProgramEditor({ programs, selectedId, onSelect, onSave, 
 
   const sectionStyle = {
     padding: "12px",
-    background: "#1a1a1a",
+    background: "#fff",
     borderRadius: 8,
+    border: "1px solid #e5e2dc",
     display: "flex" as const,
     flexDirection: "column" as const,
     gap: 8,
@@ -189,7 +190,7 @@ export default function ProgramEditor({ programs, selectedId, onSelect, onSave, 
     <div style={{ display: "flex", flexDirection: "column", gap: 12, minWidth: 320 }}>
       {/* Program list */}
       <div style={sectionStyle}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: "#eee", marginBottom: 4 }}>Programs</div>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a2a", marginBottom: 4 }}>Programs</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
           {programIds.map((id) => (
             <button
@@ -197,9 +198,9 @@ export default function ProgramEditor({ programs, selectedId, onSelect, onSave, 
               onClick={() => onSelect(id)}
               style={{
                 padding: "8px 12px",
-                background: id === selectedId ? "#2563eb" : "#222",
-                color: id === selectedId ? "#fff" : "#ccc",
-                border: id === selectedId ? "1px solid #3b82f6" : "1px solid #333",
+                background: id === selectedId ? "#2563eb" : "#f5f3ef",
+                color: id === selectedId ? "#fff" : "#2a2a2a",
+                border: id === selectedId ? "1px solid #3b82f6" : "1px solid #e0dbd4",
                 borderRadius: 6,
                 cursor: "pointer",
                 textAlign: "left",
@@ -207,7 +208,7 @@ export default function ProgramEditor({ programs, selectedId, onSelect, onSave, 
               }}
             >
               <div style={{ fontWeight: 500 }}>{programs[id].name}</div>
-              <div style={{ fontSize: 11, color: id === selectedId ? "#93c5fd" : "#666", marginTop: 2 }}>
+              <div style={{ fontSize: 11, color: id === selectedId ? "#bfdbfe" : "#999", marginTop: 2 }}>
                 {programs[id].type} &middot; {id}
               </div>
             </button>
@@ -222,9 +223,9 @@ export default function ProgramEditor({ programs, selectedId, onSelect, onSave, 
             style={{
               flex: 1,
               padding: "6px 10px",
-              background: "#222",
-              color: "#ccc",
-              border: "1px solid #444",
+              background: "#fff",
+              color: "#2a2a2a",
+              border: "1px solid #d4cfc8",
               borderRadius: 4,
               fontSize: 12,
             }}
@@ -250,18 +251,18 @@ export default function ProgramEditor({ programs, selectedId, onSelect, onSave, 
       {draft && selectedId && (
         <>
           <div style={sectionStyle}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: "#eee" }}>General</div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a2a" }}>General</div>
             <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13 }}>
-              <span style={{ color: "#aaa", minWidth: 80 }}>Name</span>
+              <span style={{ color: "#777", minWidth: 80 }}>Name</span>
               <input
                 value={draft.name}
                 onChange={(e) => setDraft({ ...draft, name: e.target.value })}
                 style={{
                   flex: 1,
                   padding: "4px 8px",
-                  background: "#222",
-                  color: "#ccc",
-                  border: "1px solid #444",
+                  background: "#fff",
+                  color: "#2a2a2a",
+                  border: "1px solid #d4cfc8",
                   borderRadius: 4,
                 }}
               />
@@ -271,7 +272,7 @@ export default function ProgramEditor({ programs, selectedId, onSelect, onSave, 
 
           {/* Clock ring settings */}
           <div style={sectionStyle}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: "#eee" }}>Clock Ring (outer, 36 LEDs)</div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a2a" }}>Clock Ring (outer, 36 LEDs)</div>
             <Slider label="Brightness" value={draft.clock_ring.brightness} min={0} max={1} step={0.05} onChange={(v) => updateRing("brightness", v)} />
             {draft.type === "clock" && (
               <>
@@ -291,7 +292,7 @@ export default function ProgramEditor({ programs, selectedId, onSelect, onSave, 
 
           {/* Illumination strip */}
           <div style={sectionStyle}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: "#eee" }}>Illum Strip (inner, 15 LEDs)</div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#2a2a2a" }}>Illum Strip (inner, 15 LEDs)</div>
             <Select label="Mode" value={draft.illum_strip.mode} options={ILLUM_MODES} onChange={(v) => updateIllum("mode", v)} />
             <Slider label="Brightness" value={draft.illum_strip.brightness} min={0} max={255} step={1} onChange={(v) => updateIllum("brightness", v)} />
             {(draft.illum_strip.mode === "solid" || draft.illum_strip.mode === "breathing" || draft.illum_strip.mode === "chase") && (
@@ -326,9 +327,9 @@ export default function ProgramEditor({ programs, selectedId, onSelect, onSave, 
               }}
               style={{
                 padding: "10px 16px",
-                background: "#7f1d1d",
-                color: "#fca5a5",
-                border: "1px solid #991b1b",
+                background: "#fef2f2",
+                color: "#dc2626",
+                border: "1px solid #fecaca",
                 borderRadius: 6,
                 cursor: "pointer",
                 fontSize: 14,

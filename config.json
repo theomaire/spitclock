@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "hardware": {
+    "clock_ring": {
+      "led_count": 36,
+      "gpio_pin": 18,
+      "led_order": "GRB",
+      "twelve_o_clock_led": 0,
+      "clockwise": true
+    },
+    "illum_strip": {
+      "led_count": 16,
+      "gpio_pin": 10,
+      "skip_first": 1,
+      "dma": 10
+    }
+  },
+  "programs": {
+    "clock_default": {
+      "type": "clock",
+      "name": "Default Clock",
+      "clock_ring": {
+        "brightness": 1.0,
+        "hour_color": [
+          150,
+          0,
+          0
+        ],
+        "minute_color": [
+          0,
+          150,
+          0
+        ],
+        "second_color": [
+          0,
+          50,
+          150
+        ],
+        "bg_color": [
+          0,
+          0,
+          0
+        ]
+      },
+      "illum_strip": {
+        "brightness": 0,
+        "color": [
+          255,
+          0,
+          0
+        ],
+        "mode": "off",
+        "speed": 0.05
+      },
+      "effect": null,
+      "effect_speed": 0.05,
+      "custom_ring_colors": null,
+      "custom_illum_colors": null
+    },
+    "night_mode": {
+      "type": "clock",
+      "name": "Night Mode",
+      "clock_ring": {
+        "brightness": 0.3,
+        "hour_color": [
+          40,
+          0,
+          0
+        ],
+        "minute_color": [
+          0,
+          40,
+          0
+        ],
+        "second_color": [
+          0,
+          0,
+          40
+        ],
+        "bg_color": [
+          0,
+          0,
+          0
+        ]
+      },
+      "illum_strip": {
+        "brightness": 0,
+        "color": [
+          0,
+          0,
+          0
+        ],
+        "mode": "off",
+        "speed": 0.05
+      },
+      "effect": null,
+      "effect_speed": 0.05,
+      "custom_ring_colors": null,
+      "custom_illum_colors": null
+    },
+    "rainbow_party": {
+      "type": "effect",
+      "name": "Rainbow Party",
+      "clock_ring": {
+        "brightness": 1.0,
+        "hour_color": [
+          150,
+          0,
+          0
+        ],
+        "minute_color": [
+          0,
+          150,
+          0
+        ],
+        "second_color": [
+          0,
+          50,
+          150
+        ],
+        "bg_color": [
+          0,
+          0,
+          0
+        ]
+      },
+      "illum_strip": {
+        "brightness": 128,
+        "color": [
+          255,
+          0,
+          0
+        ],
+        "mode": "rainbow_cycle",
+        "speed": 0.02
+      },
+      "effect": "rainbow_cycle",
+      "effect_speed": 0.02,
+      "custom_ring_colors": null,
+      "custom_illum_colors": null
+    },
+    "warm_glow": {
+      "type": "solid",
+      "name": "Warm Glow",
+      "clock_ring": {
+        "brightness": 0.5,
+        "hour_color": [
+          150,
+          0,
+          0
+        ],
+        "minute_color": [
+          0,
+          150,
+          0
+        ],
+        "second_color": [
+          0,
+          50,
+          150
+        ],
+        "bg_color": [
+          255,
+          120,
+          30
+        ]
+      },
+      "illum_strip": {
+        "brightness": 80,
+        "color": [
+          255,
+          100,
+          20
+        ],
+        "mode": "solid",
+        "speed": 0.05
+      },
+      "effect": null,
+      "effect_speed": 0.05,
+      "custom_ring_colors": null,
+      "custom_illum_colors": null
+    }
+  },
+  "schedule": {
+    "default_program": "clock_default",
+    "rules": []
+  },
+  "connection": {
+    "tailscale_ip": "100.92.33.66",
+    "local_hostname": "pizero.local",
+    "username": "pi",
+    "remote_path": "/home/pi/spitclock"
+  }
+}

@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import webbrowser
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 
 from .api import connection, deploy, preview, programs, schedule
 from .config_store import DEFAULT_CONFIG_PATH, load_config, save_config
@@ -15,8 +15,16 @@ from .config_store import DEFAULT_CONFIG_PATH, load_config, save_config
 FRONTEND_DIST = Path(__file__).resolve().parent.parent / "frontend" / "dist"
 
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Ensure config.json exists on startup
+    if not DEFAULT_CONFIG_PATH.exists():
+        save_config(load_config())
+    yield
+
+
 def create_app() -> FastAPI:
-    app = FastAPI(title="SpitClock", version="0.1.0")
+    app = FastAPI(title="SpitClock", version="0.1.0", lifespan=lifespan)
 
     app.add_middleware(
         CORSMiddleware,
@@ -43,15 +51,8 @@ def create_app() -> FastAPI:
     def get_config():
         return load_config()
 
-    # Ensure config.json exists on startup
-    @app.on_event("startup")
-    def ensure_config():
-        if not DEFAULT_CONFIG_PATH.exists():
-            save_config(load_config())
-
     # Serve React frontend (production build)
     if FRONTEND_DIST.exists():
-        # Serve index.html for all non-API routes (SPA fallback)
         @app.get("/{path:path}")
         async def spa_fallback(path: str):
             from fastapi.responses import FileResponse
